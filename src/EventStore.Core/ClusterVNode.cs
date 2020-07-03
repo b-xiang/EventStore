@@ -117,7 +117,7 @@ namespace EventStore.Core {
 		private readonly QueueStatsManager _queueStatsManager;
 		private readonly X509Certificate2 _certificate;
 		private readonly bool _disableHttps;
-		private Func<X509Certificate> _certificateSelector;
+		private Func<X509Certificate2> _certificateSelector;
 		private readonly Func<X509Certificate, X509Chain, SslPolicyErrors, ValueTuple<bool, string>> _internalServerCertificateValidator;
 		private readonly Func<X509Certificate, X509Chain, SslPolicyErrors, ValueTuple<bool, string>> _internalClientCertificateValidator;
 		private readonly Func<X509Certificate, X509Chain, SslPolicyErrors, ValueTuple<bool, string>> _externalClientCertificateValidator;
@@ -133,8 +133,8 @@ namespace EventStore.Core {
 			get { return _tasks; }
 		}
 
-		public X509Certificate2 Certificate => _certificate;
 		public Func<X509Certificate, X509Chain, SslPolicyErrors, ValueTuple<bool, string>> InternalClientCertificateValidator => _internalClientCertificateValidator;
+		public Func<X509Certificate2> CertificateSelector => _certificateSelector;
 		public bool DisableHttps => _disableHttps;
 
 #if DEBUG
